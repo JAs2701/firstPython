@@ -13,9 +13,12 @@ jobs:
 
   print:
     runs-on: ubuntu-latest
+    needs: [dump]
     steps:
       - name: print
-        run: echo dump.ttl
+        run: 
+          pwd dump.ttl
+          echo dump.ttl
 
   Jena:
     runs-on: ubuntu-latest
