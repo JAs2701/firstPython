@@ -1,0 +1,31 @@
+name: Clean Dumps
+on: [workflow_dispatch]
+jobs:
+  dump:
+    runs-on: ubuntu-latest
+    steps:
+      # Install dependencies
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17 # Jena4 requires Java 11+
+      - uses: foooomio/setup-jena@v3
+      - run: update --version
+      
+      # unzip dump file
+      - uses: actions/checkout@v4
+      - name: Extract dump.ttl.gz file
+        id: dump
+        run: |
+          gunzip -fdc dump.ttl.gz > ${{ runner.temp }}/dump.ttl
+
+      - name: Print all directory in repository
+        run: |
+          ls -la
+          ls -la ${{ runner.temp }}
+      # Execute Update in sparql
+      - uses: actions/checkout@v4
+      - name: Run the script
+        run: |
+          chmod +x ${GITHUB_WORKSPACE}/generate-public-dump.sh
+          sh ${GITHUB_WORKSPACE}/generate-public-dump.sh

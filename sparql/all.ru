@@ -59,4 +59,8 @@ prefix rico: <https://www.ica.org/standards/RiC/ontology#>
 Delete
 Where {
     ?s rico:hasOrHadLocation ?o .
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 1e7a62e06da2ff7ad5f2e7b55b865a376c2a302d

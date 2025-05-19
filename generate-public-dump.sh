@@ -1,13 +1,11 @@
-#!/bin/sh
-
+#!/bin/bash
 # path
 export dir_home=$(dirname $0)
-
+echo $dir_home
 # source 
 export data=$dir_home/dump.ttl
 export sparql=$dir_home/sparql
 export output_dir=$dir_home
-
 echo "================ Delete entities & declarations ================"
 count=0
 for query in  $sparql/*.ru
