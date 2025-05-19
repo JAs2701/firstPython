@@ -8,7 +8,7 @@ export output_dir=$dir_home
 echo "================ Delete entities & declarations ================"
 count=0
 for query in  $sparql/*.ru
-do
+do^M
 	echo "Sparql Query: " $query
 	if [ $count -eq 0 ]
 	then
@@ -21,4 +21,4 @@ do
 		#rename file
 		mv $output_dir/tmp_public-dump.ttl $output_dir/public-dump.ttl
 	fi	
-done
+done^M
