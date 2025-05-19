@@ -1,0 +1,2 @@
+dump.ttl.gz filter=lfs diff=lfs merge=lfs -text
+clear filter=lfs diff=lfs merge=lfs -text
