@@ -4,24 +4,25 @@ jobs:
   dump:
     runs-on: ubuntu-latest
     steps:
-      # unzip
-      - uses: actions/checkout@v4
-      - name: Extract dump.ttl.gz file
-        id: dump
-        run: |
-          gunzip -fdc dump.ttl.gz > ./dump.ttl
-
-      - name: Print all directory
-        run: |
-          ls -la
-
+      # Install dependencies
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: 17 # Jena4 requires Java 11+
       - uses: foooomio/setup-jena@v3
       - run: update --version
+      
+      # unzip dump file
+      - uses: actions/checkout@v4
+      - name: Extract dump.ttl.gz file
+        id: dump
+        run: |
+          gunzip -fdc dump.ttl.gz > dump.ttl
 
+      - name: Print all directory in repository
+        run: |
+          ls -la
+      # Execute Update in sparql
       - name: Make the script files executable
         run: chmod +x generate-public-dump.sh
       - name: Run the script
