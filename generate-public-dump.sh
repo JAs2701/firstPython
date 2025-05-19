@@ -5,7 +5,7 @@ export dir_home=$(dirname $0)
 
 # source 
 export data=$dir_home/dump.ttl
-export sparql=$dir_home/all.ru
+export sparql=$dir_home/sparql
 export output_dir=$dir_home
 
 echo "================ Delete entities & declarations ================"
