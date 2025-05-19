@@ -29,5 +29,6 @@ jobs:
       - uses: foooomio/setup-jena@v3
       - run: update --version
 
-      - name: Sparql Queries
-        run: generate-public-dump.sh
+      - name: Execute Sparql Queries
+        run: |
+          sh generate-public-dump.sh
