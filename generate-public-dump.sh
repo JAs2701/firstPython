@@ -1,9 +1,8 @@
 #!/bin/sh
 # path
-export dir_home=$1
-echo $dir_home
+export dir_home=$(dirname $0)
 # source 
-export data=$dir_home/dump.ttl
+export data=$1
 echo $data
 export sparql=$dir_home/sparql
 export output_dir=$dir_home
