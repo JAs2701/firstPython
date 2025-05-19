@@ -9,9 +9,12 @@ jobs:
       - name: Extract dump.ttl.gz file
         id: dump
         run: |
-          gunzip -fdc dump.ttl.gz > dump.ttl
+          gunzip -fdc dump.ttl.gz > ./dump.ttl
 
-      - uses: actions/checkout@v4
+      - name: Print all directory
+        run: |
+          ls -la
+
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
