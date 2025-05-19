@@ -28,4 +28,4 @@ jobs:
       - name: Run the script
         run: |
           chmod +x ${GITHUB_WORKSPACE}/generate-public-dump.sh
-          call bash ${GITHUB_WORKSPACE}/generate-public-dump.sh
+          sh ${GITHUB_WORKSPACE}/generate-public-dump.sh
