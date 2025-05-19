@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 # path
 export dir_home=$(dirname $0)
 echo $dir_home
@@ -13,8 +13,6 @@ do
 	echo "Sparql Query: " $query
 	if [ $count -eq 0 ]
 	then
-		# rm -rf $output_dir
-		# mkdir -p $output_dir
 		update --data $data --update $query --dump >> $output_dir/public-dump.ttl
 		count=$((count + 1))		
 	else
