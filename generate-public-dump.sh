@@ -1,8 +1,10 @@
 #!/bin/sh
 # path
 export dir_home=$(dirname $0)
+echo $dir_home
 # source 
 export data=$dir_home/dump.ttl
+echo $data
 export sparql=$dir_home/sparql
 export output_dir=$dir_home
 echo "================ Delete entities & declarations ================"
