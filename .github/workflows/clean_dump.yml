@@ -37,6 +37,6 @@ jobs:
 
       - name: Save in Repository
         run: |
-          git add .
+          git lfs track --file ${GITHUB_WORKSPACE}/public-dump.ttl
           git commit -m "Save dum.ttl in repository"
           git push
