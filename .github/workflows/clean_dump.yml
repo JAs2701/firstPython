@@ -24,7 +24,7 @@ jobs:
           ls -la
           ls -la ${{ runner.temp }}
       # Execute Update in sparql
-      - name: Make the script files executable
-        run: chmod +x generate-public-dump.sh
       - name: Run the script
-        run: ./generate-public-dump.sh #${{ runner.temp }}//dump.ttl
+        run: |
+          chmod +x ./generate-public-dump.sh
+          ./generate-public-dump.sh #${{ runner.temp }}//dump.ttl
