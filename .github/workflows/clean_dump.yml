@@ -41,5 +41,5 @@ jobs:
           git config user.email "jorge.aquino.jaq@gmail.com"
           git lfs track "public-dump.ttl"
           git add ${GITHUB_WORKSPACE}/public-dump.ttl
-          git commit -m "Save dum.ttl in repository"
+          git commit -am "Save dum.ttl in repository"
           git push
