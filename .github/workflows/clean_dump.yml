@@ -31,4 +31,4 @@ jobs:
 
       - name: Execute Sparql Queries
         run: |
-          sh generate-public-dump.sh
+          ./generate-public-dump.sh
