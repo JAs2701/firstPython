@@ -4,7 +4,22 @@ jobs:
   dump:
     runs-on: ubuntu-latest
     steps:
-      # Install dependencies
+      # unzip dump file
+      - uses: actions/checkout@v4
+      - name: Extract dump.ttl.gz file
+        id: dump
+        run: |
+          gunzip -fdc dump.ttl.gz > dump.ttl
+
+      - name: Print all directory in repository
+        run: |
+          ls -la
+          ls -la ${{ runner.temp }}
+          
+  Sparql_Dump:
+    runs-on: ubuntu-latest
+    steps:
+      # Install Apache Jena
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
@@ -12,20 +27,15 @@ jobs:
       - uses: foooomio/setup-jena@v3
       - run: update --version
       
-      # unzip dump file
-      - uses: actions/checkout@v4
-      - name: Extract dump.ttl.gz file
-        id: dump
-        run: |
-          gunzip -fdc dump.ttl.gz > ${{ runner.temp }}/dump.ttl
-
-      - name: Print all directory in repository
-        run: |
-          ls -la
-          ls -la ${{ runner.temp }}
       # Execute Update in sparql
       - uses: actions/checkout@v4
       - name: Run the script
         run: |
           chmod +x ${GITHUB_WORKSPACE}/generate-public-dump.sh
           sh ${GITHUB_WORKSPACE}/generate-public-dump.sh
+
+      - name: Save in Repository
+        run: |
+          git add .
+          git commit -m "Save dum.ttl in repository"
+          git push
