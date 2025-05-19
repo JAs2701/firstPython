@@ -13,6 +13,7 @@ jobs:
       # unzip
       - uses: actions/checkout@v3
       - name: Extract dump.ttl.gz
+        id: dump
         run: |
           gunzip -fdc dump.ttl.gz > dump.ttl
 
@@ -27,3 +28,6 @@ jobs:
           java-version: 17 # Jena4 requires Java 11+
       - uses: foooomio/setup-jena@v3
       - run: update --version
+
+      - name: Sparql Queries
+        run: generate-public-dump.sh
