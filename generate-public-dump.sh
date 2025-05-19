@@ -1,2 +1,2 @@
-#!/usr/bin/env bash
-echo "TEST"
+#!/bin/bash
+echo "test"
