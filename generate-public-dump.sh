@@ -1,6 +1,6 @@
 #!/bin/sh
 # path
-export dir_home=$(dirname $0)
+export dir_home=$1
 echo $dir_home
 # source 
 export data=$dir_home/dump.ttl
