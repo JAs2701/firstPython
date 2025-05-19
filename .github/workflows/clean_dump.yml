@@ -22,8 +22,9 @@ jobs:
       - name: Print all directory in repository
         run: |
           ls -la
+          ls -la ${{ runner.temp }}
       # Execute Update in sparql
       - name: Make the script files executable
         run: chmod +x generate-public-dump.sh
       - name: Run the script
-        run: ./generate-public-dump.sh ${{ runner.temp }}/
+        run: ./generate-public-dump.sh #${{ runner.temp }}//dump.ttl
