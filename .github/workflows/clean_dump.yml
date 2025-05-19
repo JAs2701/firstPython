@@ -17,7 +17,7 @@ jobs:
       - name: Extract dump.ttl.gz file
         id: dump
         run: |
-          gunzip -fdc dump.ttl.gz > dump.ttl
+          gunzip -fdc dump.ttl.gz > ${{ runner.temp }}/dump.ttl
 
       - name: Print all directory in repository
         run: |
@@ -26,4 +26,4 @@ jobs:
       - name: Make the script files executable
         run: chmod +x generate-public-dump.sh
       - name: Run the script
-        run: ./generate-public-dump.sh
+        run: ./generate-public-dump.sh ${{ runner.temp }}/
