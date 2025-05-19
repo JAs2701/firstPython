@@ -50,9 +50,9 @@ jobs:
       - run: export JENA_HOME=apache-jena
       - run: PATH=$PATH:$JENA_HOME/bin
 
-      - run: chmod +x ${GITHUB_WORKSPACE}/generate-public-dump.sh          
+      - run: chmod +x ./generate-public-dump.sh          
     
-      - run: sh ${GITHUB_WORKSPACE}/generate-public-dump.sh
+      - run: sh ./generate-public-dump.sh
       
       - name: Save in Repository
         run: |
