@@ -31,7 +31,6 @@ jobs:
           gunzip -fdc dump.ttl.gz > dump.ttl
 
       - run: |
-          vi dump.ttl
           pwd dump.ttl
           ls dump.ttl
           chmod +x ${GITHUB_WORKSPACE}/generate-public-dmp.sh
