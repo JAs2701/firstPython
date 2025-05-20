@@ -39,7 +39,6 @@ jobs:
         run: |
           gunzip -fdc dump.ttl.gz > dump.ttl
 
-      - name: Run Script Sparql Queries
       - run: |
           pwd dump.ttl
           chmod +x ${GITHUB_WORKSPACE}/generate-public-dmp.sh
