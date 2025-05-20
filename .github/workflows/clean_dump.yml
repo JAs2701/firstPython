@@ -29,7 +29,7 @@ jobs:
         with:
           distribution: temurin
           java-version: 17 # Jena4 requires Java 11+
-      - uses: foooomio/setup-jena@v3
+      - uses: foooomio/setup-jena@latest
       - run: update --version
 
       # unzip dump file
@@ -40,7 +40,9 @@ jobs:
           gunzip -fdc dump.ttl.gz > dump.ttl
 
       - run: |
+          vi dump.ttl
           pwd dump.ttl
+          ls dump.ttl
           chmod +x ${GITHUB_WORKSPACE}/generate-public-dmp.sh
           sh ${GITHUB_WORKSPACE}/generate-public-dmp.sh
       
