@@ -5,6 +5,7 @@ jobs:
   install_jena:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - name: install Java
       - run: |
           download_url="https://github.com/AdoptOpenJDK/openjdk11-binaries/releases/download/jdk-11.0.10%2B9/OpenJDK11U-jdk_x64_linux_hotspot_11.0.10_9.tar.gz"
@@ -21,6 +22,7 @@ jobs:
           download_jena="https://dlcdn.apache.org/jena/binaries/apache-jena-5.4.0.zip"
           wget -O ${{ runner.temp }}/apache_jena $download_jena
 
+      - uses: actions/checkout@v4
       - name: install zip
       - run: sudo apt-get install unzip
 
