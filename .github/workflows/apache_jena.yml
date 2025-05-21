@@ -1,0 +1,38 @@
+name: Apache Jena Update
+# This process is manuel execution
+on: [workflow_dispatch]
+jobs:
+  install_jena:
+    runs-on: ubuntu-latest
+    steps:
+      - name: install Java
+      - run: |
+          download_url="https://github.com/AdoptOpenJDK/openjdk11-binaries/releases/download/jdk-11.0.10%2B9/OpenJDK11U-jdk_x64_linux_hotspot_11.0.10_9.tar.gz"
+          wget -O $RUNNER_TEMP/java_package.tar.gz $download_url
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'jdkfile'
+          jdkFile: ${{ runner.temp }}/java_package.tar.gz
+          java-version: '17'
+          architecture: x64
+      
+      - name: Donwload && install Apache Jena
+      - run: |
+          download_jena="https://dlcdn.apache.org/jena/binaries/apache-jena-5.4.0.zip"
+          wget -O ${{ runner.temp }}/apache_jena $download_jena
+
+      - name: install zip
+        run: sudo apt-get install unzip
+
+      - name: Unzip Apache Jena
+        run: unzip ${{ runner.temp }}/apache_jena/apache-jena-5.4.0.zip -d ${{ runner.temp }}/jena
+
+      - name: Environement Jena
+        run: |
+          export JENA_HOME=${{ runner.temp }}/jena
+          export PATH=$PATH:$JENA_HOME/bin
+
+      
+      - run: |
+          ls -al ${{ runner.temp }}/jena
+          update --version
