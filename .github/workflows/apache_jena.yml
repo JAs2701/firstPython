@@ -5,6 +5,9 @@ jobs:
   install_jena:
     runs-on: ubuntu-latest
     steps:
+
+      - run: sudo apt-get install unzip
+    
       - uses: actions/checkout@v4
       - name: install Java
       - run: |
@@ -20,20 +23,14 @@ jobs:
       - name: Donwload && install Apache Jena
       - run: |
           download_jena="https://dlcdn.apache.org/jena/binaries/apache-jena-5.4.0.zip"
-          wget -O ${{ runner.temp }}/apache_jena $download_jena
+          wget -O ${{ runner.temp }}/apache_jena $download_jena     
 
-      - uses: actions/checkout@v4
-      - name: install zip
-      - run: sudo apt-get install unzip
-
-      - name: Unzip Apache Jena
       - run: unzip ${{ runner.temp }}/apache_jena/apache-jena-5.4.0.zip -d ${{ runner.temp }}/jena
 
       - name: Environement Jena
       - run: |
           export JENA_HOME=${{ runner.temp }}/jena
           export PATH=$PATH:$JENA_HOME/bin
-
       
       - run: |
           ls -al ${{ runner.temp }}/jena
