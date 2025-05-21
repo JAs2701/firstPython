@@ -5,10 +5,7 @@ jobs:
   install_jena:
     runs-on: ubuntu-latest
     steps:
-
-      - uses: actions/checkout@v4
-      - run: sudo apt-get install unzip
-    
+      
       - uses: actions/checkout@v4
       - name: install Java
       - run: |
