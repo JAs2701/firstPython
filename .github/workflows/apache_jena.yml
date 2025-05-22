@@ -6,12 +6,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Install Java
-        uses: actions/setup-java@v4
-          with:
-            distribution: 'temurin'
-            java-version: '21'
-            check-latest: true
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+          check-latest: true
+
+      - run: |
+          java --version
 
       - name: Download Apache Jena
         run: |
