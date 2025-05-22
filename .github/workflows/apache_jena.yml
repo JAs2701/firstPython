@@ -5,17 +5,18 @@ jobs:
   environement_Jena:
     runs-on: ubuntu-latest
     steps:
+      # Open file with format lfs
       - uses: actions/checkout@v4
         with:
           lfs: true
-      - uses: actions/setup-java@v4
+
+      - name: Install Java
+        uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '21'
           check-latest: true
-      - run: |
-          java --version
-
+      
       - name: Download Apache Jena
         run: |
           download_url="https://dlcdn.apache.org/jena/binaries/apache-jena-5.4.0.zip"
@@ -26,20 +27,17 @@ jobs:
           unzip $RUNNER_TEMP/apache-jena-5.4.0.zip -d $RUNNER_TEMP/apache-jena
           # Add in environement Path
           echo "$RUNNER_TEMP/apache-jena/apache-jena-5.4.0/bin/" >> "$GITHUB_PATH"
-      - run: |          
-          update --version
-
+      
       # unzip dump file
-      - run: |
-          ls -lh dump.ttl.gz
       - name: Extract dump.ttl.gz file
         run: |
           gunzip -fdc dump.ttl.gz > dump.ttl
+
+      - name: Add memory space
+        run: |
+          echo "JVM_ARGS="-Xms1024m -Xmx1024m" >> ""
       
       - name: Sparql Queries
         run: |
-          update --version
-          head -n40 dump.ttl
-          
           chmod +x ${GITHUB_WORKSPACE}/generate-public-dmp.sh
           sh ${GITHUB_WORKSPACE}/generate-public-dmp.sh
