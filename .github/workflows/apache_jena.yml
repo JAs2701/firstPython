@@ -23,9 +23,21 @@ jobs:
         run: |
           sudo apt-get install unzip
           unzip $RUNNER_TEMP/apache-jena-5.4.0.zip -d $RUNNER_TEMP/apache-jena
-
+          # Add in environement Path
           echo "$RUNNER_TEMP/apache-jena/apache-jena-5.4.0/bin/" >> "$GITHUB_PATH"
-
-          
       - run: |          
           update --version
+
+  dump_sapa:
+    runs-on: ubuntu-latest
+    needs: [environement_Jena]
+    steps:
+      # unzip dump file
+      - uses: actions/checkout@v4
+      - name: Extract dump.ttl.gz file
+        run: |
+          gunzip -fdc dump.ttl.gz > dump.ttl
+
+      - run: |
+          chmod +x ${GITHUB_WORKSPACE}/generate-public-dmp.sh
+          sh ${GITHUB_WORKSPACE}/generate-public-dmp.sh
