@@ -15,12 +15,10 @@ jobs:
           java-version: '11.0.0'
           architecture: x64
 
-      - name: Download Apache Jena
       - run: |
           download_url="https://dlcdn.apache.org/jena/binaries/apache-jena-5.4.0.zip"
           wget -O $RUNNER_TEMP/apache-jena-5.4.0.zip $download_url
 
-      - name: unzip
       - run: |
           sudo apt-get install unzip
           unzip $RUNNER_TEMP/apache-jena-5.4.0.zip -d $RUNNER_TEMP/apache-jena
