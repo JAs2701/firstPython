@@ -30,7 +30,10 @@ jobs:
       # unzip dump file
       - uses: actions/checkout@v4
         with:
-          lfs: true            
+          lfs: true    
+      
+      - run: |
+          ls -lh dump.ttl.gz
       - name: Extract dump.ttl.gz file
         run: |
           gunzip -fdc dump.ttl.gz > dump.ttl
@@ -38,6 +41,6 @@ jobs:
       - name: Sparql Queries
         run: |
           update --version
-          ls -l dump.ttl
+          ls -lh dump.ttl
           chmod +x ${GITHUB_WORKSPACE}/generate-public-dmp.sh
           sh ${GITHUB_WORKSPACE}/generate-public-dmp.sh
