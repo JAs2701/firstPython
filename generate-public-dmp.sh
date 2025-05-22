@@ -8,8 +8,6 @@ export sparql=$dir_home/sparql
 # Directory Output
 export output_dir=$dir_home
 # Start
-echo "Update information..............."
-echo update --help
 count=0
 for query in  $sparql/*.ru
 do
