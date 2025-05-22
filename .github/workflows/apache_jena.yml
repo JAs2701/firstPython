@@ -32,10 +32,6 @@ jobs:
       - name: Extract dump.ttl.gz file
         run: |
           gunzip -fdc dump.ttl.gz > dump.ttl
-
-      - name: Add memory space
-        run: |
-          echo "JVM_ARGS="-Xms1024m -Xmx1024m" >> ""
       
       - name: Sparql Queries
         run: |
