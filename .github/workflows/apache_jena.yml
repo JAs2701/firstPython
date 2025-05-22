@@ -22,3 +22,14 @@ jobs:
       - run: |
           sudo apt-get install unzip
           unzip $RUNNER_TEMP/apache-jena-5.4.0.zip -d $RUNNER_TEMP/apache-jena
+
+      - run: |
+          export JENA_HOME=$RUNNER_TEMP/apache-jena
+          export PATH=$PATH:$JENA_HOME/bin
+  
+  Dump:
+    runs-on: ubuntu-latest
+    needs: [environement_Jena]
+    steps:
+      - run: |
+          update --version
