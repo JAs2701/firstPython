@@ -4,6 +4,7 @@ on: [workflow_dispatch]
 jobs:
   environement_Jena:
     runs-on: ubuntu-latest
+    environment: update
     steps:
       - run: |
           download_url="https://github.com/AdoptOpenJDK/openjdk11-binaries/releases/download/jdk-11.0.10%2B9/OpenJDK11U-jdk_x64_linux_hotspot_11.0.10_9.tar.gz"
@@ -15,17 +16,15 @@ jobs:
           java-version: '11.0.0'
           architecture: x64
 
+      - name: Install Apache Jena
       - run: |
           download_url="https://dlcdn.apache.org/jena/binaries/apache-jena-5.4.0.zip"
           wget -O $RUNNER_TEMP/apache-jena-5.4.0.zip $download_url
-
-      - run: |
           sudo apt-get install unzip
           unzip $RUNNER_TEMP/apache-jena-5.4.0.zip -d $RUNNER_TEMP/apache-jena
-
-      - run: |
           export JENA_HOME=$RUNNER_TEMP/apache-jena/apache-jena-5.4.0
           export PATH=$PATH:$JENA_HOME/bin
 
+      - name: Execute update
       - run: |
           update --version
