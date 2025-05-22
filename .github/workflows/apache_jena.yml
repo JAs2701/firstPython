@@ -4,31 +4,31 @@ on: [workflow_dispatch]
 jobs:
   environement_Jena:
     runs-on: ubuntu-latest
-    environment: update
     steps:
-      - run: |
+      - name: Download Java 
+        run: |
           download_url="https://github.com/AdoptOpenJDK/openjdk11-binaries/releases/download/jdk-11.0.10%2B9/OpenJDK11U-jdk_x64_linux_hotspot_11.0.10_9.tar.gz"
           wget -O $RUNNER_TEMP/java_package.tar.gz $download_url
-      - uses: actions/setup-java@v4
+      
+      - name: Install Java
+        uses: actions/setup-java@v4
         with:
           distribution: 'jdkfile'
           jdkFile: ${{ runner.temp }}/java_package.tar.gz
           java-version: '11.0.0'
           architecture: x64
 
-      - name: Install Apache Jena && Add to environement
+      - name: Download Apache Jena
         run: |
           download_url="https://dlcdn.apache.org/jena/binaries/apache-jena-5.4.0.zip"
           wget -O $RUNNER_TEMP/apache-jena-5.4.0.zip $download_url
+      - name: Unzip package && Configuration environement Apache Jena
+        run: |
           sudo apt-get install unzip
           unzip $RUNNER_TEMP/apache-jena-5.4.0.zip -d $RUNNER_TEMP/apache-jena
 
-          # Variable
-          path_jena=$RUNNER_TEMP/apache-jena/apache-jena-5.4.0
-          inPath=$JENA_HOME/bin
-          # set them as GitHub ENV variables
-          echo "JENA_HOME=$path_jena" >> $GITHUB_ENV
-          export PATH=$inPath" >> $GITHUB_ENVV
+          echo "$RUNNER_TEMP/apache-jena/apache-jena-5.4.0/bin/" >> "$GITHUB_PATH"
 
-      - run: |
+          
+      - run: |          
           update --version
