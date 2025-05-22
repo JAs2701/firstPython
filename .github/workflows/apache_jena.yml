@@ -6,6 +6,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          lfs: true
       - uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
@@ -28,10 +30,6 @@ jobs:
           update --version
 
       # unzip dump file
-      - uses: actions/checkout@v4
-        with:
-          lfs: true    
-      
       - run: |
           ls -lh dump.ttl.gz
       - name: Extract dump.ttl.gz file
