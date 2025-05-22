@@ -11,7 +11,6 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
           check-latest: true
-
       - run: |
           java --version
 
@@ -28,19 +27,13 @@ jobs:
       - run: |          
           update --version
 
-  dump_sapa:
-    runs-on: ubuntu-latest
-    needs: [environement_Jena]
-    steps:
-      - name: Get Path
-        run: |
-          echo $GITHUB_PATH
       # unzip dump file
       - uses: actions/checkout@v4
       - name: Extract dump.ttl.gz file
         run: |
           gunzip -fdc dump.ttl.gz > dump.ttl
-
-      - run: |
+      
+      - name: Sparql Queries
+        run: |
           chmod +x ${GITHUB_WORKSPACE}/generate-public-dmp.sh
           sh ${GITHUB_WORKSPACE}/generate-public-dmp.sh
