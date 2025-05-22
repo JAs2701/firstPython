@@ -16,7 +16,6 @@ jobs:
           java-version: '11.0.0'
           architecture: x64
 
-      - name: Install Apache Jena
       - run: |
           download_url="https://dlcdn.apache.org/jena/binaries/apache-jena-5.4.0.zip"
           wget -O $RUNNER_TEMP/apache-jena-5.4.0.zip $download_url
@@ -25,6 +24,5 @@ jobs:
           export JENA_HOME=$RUNNER_TEMP/apache-jena/apache-jena-5.4.0
           export PATH=$PATH:$JENA_HOME/bin
 
-      - name: Execute update
       - run: |
           update --version
