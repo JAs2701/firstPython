@@ -41,6 +41,7 @@ jobs:
       - name: Sparql Queries
         run: |
           update --version
-          ls -lh dump.ttl
+          head -n40 dump.ttl
+          
           chmod +x ${GITHUB_WORKSPACE}/generate-public-dmp.sh
           sh ${GITHUB_WORKSPACE}/generate-public-dmp.sh
