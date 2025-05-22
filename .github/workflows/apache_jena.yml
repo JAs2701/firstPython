@@ -16,13 +16,19 @@ jobs:
           java-version: '11.0.0'
           architecture: x64
 
-      - run: |
+      - name: Install Apache Jena && Add to environement
+        run: |
           download_url="https://dlcdn.apache.org/jena/binaries/apache-jena-5.4.0.zip"
           wget -O $RUNNER_TEMP/apache-jena-5.4.0.zip $download_url
           sudo apt-get install unzip
           unzip $RUNNER_TEMP/apache-jena-5.4.0.zip -d $RUNNER_TEMP/apache-jena
-          export JENA_HOME=$RUNNER_TEMP/apache-jena/apache-jena-5.4.0
-          export PATH=$PATH:$JENA_HOME/bin
+
+          # Variable
+          path_jena=$RUNNER_TEMP/apache-jena/apache-jena-5.4.0
+          inPath=$JENA_HOME/bin
+          # set them as GitHub ENV variables
+          echo "JENA_HOME=$path_jena" >> $GITHUB_ENV
+          export PATH=$inPath" >> $GITHUB_ENVV
 
       - run: |
           update --version
