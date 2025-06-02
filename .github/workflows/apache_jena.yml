@@ -33,9 +33,9 @@ jobs:
         run: |
           gunzip -fdc dump.ttl.gz > dump.ttl
 
-      - run: |
-          export JAVA_TOOL_OPTIONS=-Xmx1424m
-          java -XX:+PrintFlagsFinal -version | grep HeapSize
+      #- run: |
+      #    export JAVA_TOOL_OPTIONS=-Xmx1424m
+      #    java -XX:+PrintFlagsFinal -version | grep HeapSize
       
       - name: Sparql Queries
         run: |
