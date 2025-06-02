@@ -21,12 +21,12 @@ jobs:
         run: |
           download_url="https://dlcdn.apache.org/jena/binaries/apache-jena-5.4.0.zip"
           wget -O $RUNNER_TEMP/apache-jena-5.4.0.zip $download_url
-      - name: Unzip package && Configuration environement Apache Jena
-        run: |
-          sudo apt-get install unzip
-          unzip $RUNNER_TEMP/apache-jena-5.4.0.zip -d $RUNNER_TEMP/apache-jena
+      #- name: Unzip package && Configuration environement Apache Jena
+      #  run: |
+      #    sudo apt-get install unzip
+      #    unzip $RUNNER_TEMP/apache-jena-5.4.0.zip -d $RUNNER_TEMP/apache-jena
           # Add in environement Path
-          echo "$RUNNER_TEMP/apache-jena/apache-jena-5.4.0/bin/" >> "$GITHUB_PATH"
+      #    echo "$RUNNER_TEMP/apache-jena/apache-jena-5.4.0/bin" >> "$GITHUB_PATH"
       
       # unzip dump file
       - name: Extract dump.ttl.gz file
@@ -36,8 +36,18 @@ jobs:
       #- run: |
       #    export JAVA_TOOL_OPTIONS=-Xmx1424m
       #    java -XX:+PrintFlagsFinal -version | grep HeapSize
-      
-      - name: Sparql Queries
+      # Jena Process
+      - name: Execute Jena
         run: |
+          sudo apt-get install unzip
+          unzip $RUNNER_TEMP/apache-jena-5.4.0.zip -d $RUNNER_TEMP/apache-jena
+          export JENA_HOME=$RUNNER_TEMP/apache-jena
+          export PATH=$JENA_HOME/bin
           chmod +x ${GITHUB_WORKSPACE}/generate-public-dmp.sh
           sh ${GITHUB_WORKSPACE}/generate-public-dmp.sh
+          
+      
+      #- name: Sparql Queries
+      #  run: |
+      #    chmod +x ${GITHUB_WORKSPACE}/generate-public-dmp.sh
+      #    sh ${GITHUB_WORKSPACE}/generate-public-dmp.sh
