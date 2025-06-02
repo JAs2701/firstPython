@@ -38,10 +38,10 @@ jobs:
       #    JAVA_OPTS="-Xms512m -Xmx1024m" >> $GITHUB_ENV 
 
       - run: |
-          set JAVA_OPTS="-Xms512m -Xmx1024m"
+          set JAVA_OPTS="-Xms512m -Xmx1024m" >> $GITHUB_ENV
           java -XX:+PrintFlagsFinal -version | grep HeapSize
       
-      - name: Sparql Queries
-        run: |
-          chmod +x ${GITHUB_WORKSPACE}/generate-public-dmp.sh
-          sh ${GITHUB_WORKSPACE}/generate-public-dmp.sh
+      #- name: Sparql Queries
+      #  run: |
+      #    chmod +x ${GITHUB_WORKSPACE}/generate-public-dmp.sh
+      #    sh ${GITHUB_WORKSPACE}/generate-public-dmp.sh
