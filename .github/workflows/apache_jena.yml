@@ -41,8 +41,8 @@ jobs:
         run: |
           sudo apt-get install unzip
           unzip $RUNNER_TEMP/apache-jena-5.4.0.zip -d $RUNNER_TEMP/apache-jena
-          export JENA_HOME=$RUNNER_TEMP/apache-jena/apache-jena-5.4.0/
-          export PATH=$JENA_HOME/bin
+          export JENA_HOME=$RUNNER_TEMP/apache-jena/apache-jena-5.4.0/ >> "$GITHUB_PATH"
+          export PATH=$JENA_HOME/bin >> "$GITHUB_PATH"
       #chmod +x ${GITHUB_WORKSPACE}/generate-public-dmp.sh
       #sh ${GITHUB_WORKSPACE}/generate-public-dmp.sh
           
