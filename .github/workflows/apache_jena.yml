@@ -33,12 +33,12 @@ jobs:
         run: |
           gunzip -fdc dump.ttl.gz > dump.ttl
 
-      - name: Increase memory in Java
-        run: |
-          JAVA_OPTS="-Xms512m -Xmx1024m" >> $GITHUB_ENV 
+      #- name: Increase memory in Java
+      #  run: |
+      #    JAVA_OPTS="-Xms512m -Xmx1024m" >> $GITHUB_ENV 
 
       - run: |
-          java --version
+          set JAVA_OPTS="-Xms512m -Xmx1024m"
           java -XX:+PrintFlagsFinal -version | grep HeapSize
       
       - name: Sparql Queries
