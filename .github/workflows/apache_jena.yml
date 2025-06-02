@@ -38,7 +38,11 @@ jobs:
       #    JAVA_OPTS="-Xms512m -Xmx1024m" >> $GITHUB_ENV 
 
       - run: |
-          set JAVA_OPTS="-Xms512m -Xmx1024m" >> $GITHUB_ENV
+          export JAVA_OPTS="-Xms512m -Xmx1024m"
+          java -XX:+PrintFlagsFinal -version | grep HeapSize
+
+      - run: |
+          export JAVA_TOOL_OPTIONS=-Xmx512m
           java -XX:+PrintFlagsFinal -version | grep HeapSize
       
       #- name: Sparql Queries
