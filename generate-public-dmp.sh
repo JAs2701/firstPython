@@ -14,10 +14,10 @@ do
 	echo "Sparql Query: " $query
 	if [ $count -eq 0 ]
 	then
-		update --data $data --update $query --dump >> $output_dir/public-dump.ttl
+		java -Xmx1424m update --data $data --update $query --dump >> $output_dir/public-dump.ttl
 		count=$((count + 1))		
 	else
-		update --data $output_dir/public-dump.ttl --update $query --dump >> $output_dir/tmp_public-dump.ttl
+		java -Xmx1424m update --data $output_dir/public-dump.ttl --update $query --dump >> $output_dir/tmp_public-dump.ttl
 		# delete file
 		rm $output_dir/public-dump.ttl
 		#rename file
