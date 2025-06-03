@@ -44,14 +44,11 @@ jobs:
           
       - name: Add config
         run: |
+          chmod +x ${GITHUB_WORKSPACE}/apache-jena/apache-jena-5.4.0/
           export JENA_HOME=apache-jena/apache-jena-5.4.0/ >> "$GITHUB_PATH"
           export PATH=$JENA_HOME/bin >> "$GITHUB_PATH"
         #unzip $RUNNER_TEMP/apache-jena-5.4.0.zip -d $RUNNER_TEMP/apache-jena
         #export JENA_HOME=$RUNNER_TEMP/apache-jena/apache-jena-5.4.0/ >> "$GITHUB_PATH"
-      - run: |
-          pwd apache-jena
-          ls -l apache-jena
-      
       - name: Execute Shell Clean Dump
         run: |
           chmod +x ${GITHUB_WORKSPACE}/generate-public-dmp.sh
