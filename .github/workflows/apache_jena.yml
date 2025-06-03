@@ -37,16 +37,22 @@ jobs:
           export JAVA_TOOL_OPTIONS=-Xmx9424m
           java -XX:+PrintFlagsFinal -version | grep HeapSize
       # Jena Process
-      - name: Execute Jena
+      - name: Install Apache Jena 5.4.0
         run: |
           sudo apt-get install unzip
           unzip $RUNNER_TEMP/apache-jena-5.4.0.zip -d apache-jena
+          
+      - name: Add config
+        run: |
           export JENA_HOME=apache-jena/apache-jena-5.4.0/ >> "$GITHUB_PATH"
           export PATH=$JENA_HOME/bin >> "$GITHUB_PATH"
         #unzip $RUNNER_TEMP/apache-jena-5.4.0.zip -d $RUNNER_TEMP/apache-jena
         #export JENA_HOME=$RUNNER_TEMP/apache-jena/apache-jena-5.4.0/ >> "$GITHUB_PATH"
+      - run: |
+          pwd apache-jena
+          ls -l apache-jena
       
-      - name: Sparql Queries
+      - name: Execute Shell Clean Dump
         run: |
           chmod +x ${GITHUB_WORKSPACE}/generate-public-dmp.sh
           sh ${GITHUB_WORKSPACE}/generate-public-dmp.sh
