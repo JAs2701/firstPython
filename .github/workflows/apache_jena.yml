@@ -41,10 +41,10 @@ jobs:
         run: |
           sudo apt-get install unzip
           unzip $RUNNER_TEMP/apache-jena-5.4.0.zip -d apache-jena
-          
+
+      # chmod +x ${GITHUB_WORKSPACE}/apache-jena/apache-jena-5.4.0/
       - name: Add environement Apache Jena
-        run: |
-          chmod +x ${GITHUB_WORKSPACE}/apache-jena/apache-jena-5.4.0/
+        run: |          
           export JENA_HOME=apache-jena/apache-jena-5.4.0/ >> "$GITHUB_PATH"
           export PATH=$JENA_HOME/bin >> "$GITHUB_PATH"
         #unzip $RUNNER_TEMP/apache-jena-5.4.0.zip -d $RUNNER_TEMP/apache-jena
