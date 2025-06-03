@@ -33,9 +33,9 @@ jobs:
         run: |
           gunzip -fdc dump.ttl.gz > dump.ttl
 
-      #- run: |
-      #    export JAVA_TOOL_OPTIONS=-Xmx1424m
-      #    java -XX:+PrintFlagsFinal -version | grep HeapSize
+      - run: |
+          export JAVA_TOOL_OPTIONS=-Xmx9424m
+          java -XX:+PrintFlagsFinal -version | grep HeapSize
       # Jena Process
       - name: Execute Jena
         run: |
@@ -43,9 +43,7 @@ jobs:
           unzip $RUNNER_TEMP/apache-jena-5.4.0.zip -d $RUNNER_TEMP/apache-jena
           export JENA_HOME=$RUNNER_TEMP/apache-jena/apache-jena-5.4.0/ >> "$GITHUB_PATH"
           export PATH=$JENA_HOME/bin >> "$GITHUB_PATH"
-      #chmod +x ${GITHUB_WORKSPACE}/generate-public-dmp.sh
-      #sh ${GITHUB_WORKSPACE}/generate-public-dmp.sh
-          
+      
       - name: Sparql Queries
         run: |
           chmod +x ${GITHUB_WORKSPACE}/generate-public-dmp.sh
