@@ -7,6 +7,8 @@ export data=$dir_home/dump.ttl
 export sparql=$dir_home/sparql
 # Directory Output
 export output_dir=$dir_home
+#
+update --version
 # Start
 count=0
 for query in  $sparql/*.ru
