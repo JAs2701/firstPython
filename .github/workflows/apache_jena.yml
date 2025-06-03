@@ -33,16 +33,16 @@ jobs:
         run: |
           gunzip -fdc dump.ttl.gz > dump.ttl
 
-      - run: |
-          export JAVA_TOOL_OPTIONS=-Xmx9424m
-          java -XX:+PrintFlagsFinal -version | grep HeapSize
+      #- run: |
+      #    export JAVA_TOOL_OPTIONS=-Xmx9424m
+      #    java -XX:+PrintFlagsFinal -version | grep HeapSize
       # Jena Process
       - name: Install Apache Jena 5.4.0
         run: |
           sudo apt-get install unzip
           unzip $RUNNER_TEMP/apache-jena-5.4.0.zip -d apache-jena
           
-      - name: Add config
+      - name: Add environement Apache Jena
         run: |
           chmod +x ${GITHUB_WORKSPACE}/apache-jena/apache-jena-5.4.0/
           export JENA_HOME=apache-jena/apache-jena-5.4.0/ >> "$GITHUB_PATH"
