@@ -40,9 +40,11 @@ jobs:
       - name: Execute Jena
         run: |
           sudo apt-get install unzip
-          unzip $RUNNER_TEMP/apache-jena-5.4.0.zip -d $RUNNER_TEMP/apache-jena
-          export JENA_HOME=$RUNNER_TEMP/apache-jena/apache-jena-5.4.0/ >> "$GITHUB_PATH"
+          unzip $RUNNER_TEMP/apache-jena-5.4.0.zip -d apache-jena
+          export JENA_HOME=apache-jena/apache-jena-5.4.0/ >> "$GITHUB_PATH"
           export PATH=$JENA_HOME/bin >> "$GITHUB_PATH"
+        #unzip $RUNNER_TEMP/apache-jena-5.4.0.zip -d $RUNNER_TEMP/apache-jena
+        #export JENA_HOME=$RUNNER_TEMP/apache-jena/apache-jena-5.4.0/ >> "$GITHUB_PATH"
       
       - name: Sparql Queries
         run: |
