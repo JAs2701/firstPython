@@ -15,6 +15,7 @@ do
 	if [ $count -eq 0 ]
 	then
  		echo "Execute commande........................."
+   		echo "Path Lib Jena: "$dir_home/apache-jena/apache-jena-5.4.0/lib/*
 		#java -Xmx2048m -Xms9048m update --data $data --update $query --dump >> $output_dir/public-dump.ttl
   		java -Xms500m -Xmx9024m -cp $dir_home/apache-jena/apache-jena-5.4.0/lib/* update --help
 		count=$((count + 1))		
