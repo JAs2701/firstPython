@@ -8,7 +8,8 @@ export sparql=$dir_home/sparql
 # Directory Output
 export output_dir=$dir_home
 #
-echo java -XX:+PrintFlagsFinal -version | grep HeapSize
+echo java --version 
+java -XX:+PrintFlagsFinal -version | grep HeapSize
 # Start
 count=0
 for query in  $sparql/*.ru
