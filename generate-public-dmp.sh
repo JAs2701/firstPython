@@ -8,8 +8,9 @@ export sparql=$dir_home/sparql
 # Directory Output
 export output_dir=$dir_home
 #
-echo java --version 
 java -XX:+PrintFlagsFinal -version | grep HeapSize
+#
+ls -l $dir_home/apache-jena/apache-jena-5.4.0/*
 # Start
 count=0
 for query in  $sparql/*.ru
@@ -20,10 +21,10 @@ do
  		echo "Execute commande........................."
    		echo "Path Lib Jena: "$dir_home/apache-jena/apache-jena-5.4.0/lib/*
 		#java -Xmx2048m -Xms9048m update --data $data --update $query --dump >> $output_dir/public-dump.ttl
-  		java -Xms500m -Xmx9024m -cp $dir_home/apache-jena/apache-jena-5.4.0/lib/* $dir_home/apache-jena/apache-jena-5.4.0/bin/arq.update --help
+  		java -Xms500m -Xmx9024m -cp "$dir_home/apache-jena/apache-jena-5.4.0/lib/*" $dir_home/apache-jena/apache-jena-5.4.0/bin/arq.update --help
 		count=$((count + 1))		
 	else
- 		java -Xms500m -Xmx9024m -cp $dir_home/apache-jena/apache-jena-5.4.0/lib/* $dir_home/apache-jena/apache-jena-5.4.0/bin/arq.update --help
+ 		java -Xms500m -Xmx9024m -cp "$dir_home/apache-jena/apache-jena-5.4.0/lib/*" $dir_home/apache-jena/apache-jena-5.4.0/bin/arq.update --help
 		#java -Xmx2048m -Xms9048m update --data $output_dir/public-dump.ttl --update $query --dump >> $output_dir/tmp_public-dump.ttl
 		# delete file
 		rm $output_dir/public-dump.ttl
