@@ -44,6 +44,14 @@ jobs:
           chmod +x ${GITHUB_WORKSPACE}/generate-public-dmp.sh
           sh ${GITHUB_WORKSPACE}/generate-public-dmp.sh
 
+      - run: |
+          git remote add origin https://github.com/JAs2701/test_dump.git
+          git branch -M main
+          git lfs track "public-dump.ttl"
+          git add ${GITHUB_WORKSPACE}/public-dump.ttl
+          git commit -am "Commit public-dump.ttl"
+          git push -u origin main
+
       # JAs2701/test_dump
       - name: Checkout profile repo
         uses: actions/checkout@v4
@@ -60,7 +68,7 @@ jobs:
            CI_COMMIT_AUTHOR: github-actions[bot]
            CI_COMMIT_EMAIL: "jorge.aquino.jaq@gmail.com"
         run: |
-            cd profile
+            cd public
             git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
             git config --global user.email "${{ env.CI_COMMIT_EMAIL }}"
             if [[ `git status --porcelain --untracked-files=no` ]]; then
