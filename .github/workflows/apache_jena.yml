@@ -59,7 +59,7 @@ jobs:
           git config user.name ${{ github.actor }}
           git config user.email "jorge.aquino.jaq@gmail.com"
           git lfs track "public-dump.ttl"
-          git add ${GITHUB_WORKSPACE}/public-dump.ttl
+          git add generate-public-dmp.sh
           git commit -am "Commit public-dump.ttl"
           git push
 
