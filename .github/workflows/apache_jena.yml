@@ -52,13 +52,14 @@ jobs:
         
   commit:
     runs-on: ubuntu-latest
-    needs: [clone_Repo,environement_Jena]
+    needs: [clone_Repo]
     steps:
       - name: Commit in repository public
         uses: actions/checkout@v4
         with:
           repository: JAs2701/test_dump
-          lfs: true
+          token: ${{ github.token }}
+          #lfs: true
       
       - run: |
           git config user.name ${{ github.actor }}
