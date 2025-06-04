@@ -55,10 +55,11 @@ jobs:
     needs: [clone_Repo,environement_Jena]
     steps:
       - name: Commit in repository public
-      - uses: actions/checkout@v4
+        uses: actions/checkout@v4
         with:
           repository: JAs2701/test_dump
           lfs: true
+      
       - run: |
           git config user.name ${{ github.actor }}
           git config user.email "jorge.aquino.jaq@gmail.com"
