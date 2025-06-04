@@ -44,14 +44,6 @@ jobs:
           chmod +x ${GITHUB_WORKSPACE}/generate-public-dmp.sh
           sh ${GITHUB_WORKSPACE}/generate-public-dmp.sh
 
-      - run: |
-          git remote add origin https://github.com/JAs2701/test_dump.git
-          git branch -M main
-          git lfs track "public-dump.ttl"
-          git add ${GITHUB_WORKSPACE}/public-dump.ttl
-          git commit -am "Commit public-dump.ttl"
-          git push -u origin main
-
       # JAs2701/test_dump
       - name: Checkout profile repo
         uses: actions/checkout@v4
@@ -76,7 +68,7 @@ jobs:
               git add README.md
               git commit -m "${{ env.CI_COMMIT_MESSAGE }}"
               git lfs track "public-dump.ttl"
-              git add ${GITHUB_WORKSPACE}/public-dump.ttl
+              git add public-dump.ttl
               git push
             else
               # No changes
