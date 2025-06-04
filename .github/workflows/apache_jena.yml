@@ -21,21 +21,12 @@ jobs:
         run: |
           download_url="https://dlcdn.apache.org/jena/binaries/apache-jena-5.4.0.zip"
           wget -O $RUNNER_TEMP/apache-jena-5.4.0.zip $download_url
-      #- name: Unzip package && Configuration environement Apache Jena
-      #  run: |
-      #    sudo apt-get install unzip
-      #    unzip $RUNNER_TEMP/apache-jena-5.4.0.zip -d $RUNNER_TEMP/apache-jena
-          # Add in environement Path
-      #    echo "$RUNNER_TEMP/apache-jena/apache-jena-5.4.0/bin" >> "$GITHUB_PATH"
-      
+          
       # unzip dump file
       - name: Unzip dump.ttl.gz file
         run: |
           gunzip -fdc dump.ttl.gz > dump.ttl
 
-      #- run: |
-      #    export JAVA_TOOL_OPTIONS=-Xmx9424m
-      #    java -XX:+PrintFlagsFinal -version | grep HeapSize
       # Jena Process
       - name: Install Apache Jena 5.4.0
         run: |
@@ -47,19 +38,21 @@ jobs:
         run: |          
           export JENA_HOME=apache-jena/apache-jena-5.4.0/ >> "$GITHUB_PATH"
           export PATH=$JENA_HOME/bin >> "$GITHUB_PATH"
-        #unzip $RUNNER_TEMP/apache-jena-5.4.0.zip -d $RUNNER_TEMP/apache-jena
-        #export JENA_HOME=$RUNNER_TEMP/apache-jena/apache-jena-5.4.0/ >> "$GITHUB_PATH"
+        
       - name: Execute Shell Clean Dump
         run: |
           chmod +x ${GITHUB_WORKSPACE}/generate-public-dmp.sh
           sh ${GITHUB_WORKSPACE}/generate-public-dmp.sh
 
+      # JAs2701/test_dump
       # Commit dump file clean
-      - name: Save in Repository
+      - name: Commit in Repository
         run: |
-          git config user.name ${{ github.actor }}
-          git config user.email "jorge.aquino.jaq@gmail.com"
-          git lfs track "public-dump.ttl"
-          git add ${GITHUB_WORKSPACE}/public-dump.ttl
-          git commit -am "Save dum.ttl in repository"
-          git push
+           git remote add test_dump https://github.com/JAs2701/test_dump.git
+           git fetch test_dump           
+           git config user.name ${{ github.actor }}
+           git config user.email "jorge.aquino.jaq@gmail.com"
+           git lfs track "public-dump.ttl"
+           git add ${GITHUB_WORKSPACE}/public-dump.ttl
+           git commit -am "Commit public-dump.ttl"
+           git push
