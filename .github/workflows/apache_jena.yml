@@ -29,7 +29,7 @@ jobs:
       #    echo "$RUNNER_TEMP/apache-jena/apache-jena-5.4.0/bin" >> "$GITHUB_PATH"
       
       # unzip dump file
-      - name: Extract dump.ttl.gz file
+      - name: Unzip dump.ttl.gz file
         run: |
           gunzip -fdc dump.ttl.gz > dump.ttl
 
@@ -43,7 +43,7 @@ jobs:
           unzip $RUNNER_TEMP/apache-jena-5.4.0.zip -d apache-jena
 
       # chmod +x ${GITHUB_WORKSPACE}/apache-jena/apache-jena-5.4.0/
-      - name: Add environement Apache Jena
+      - name: Add environement Apache Jena in Github Action
         run: |          
           export JENA_HOME=apache-jena/apache-jena-5.4.0/ >> "$GITHUB_PATH"
           export PATH=$JENA_HOME/bin >> "$GITHUB_PATH"
