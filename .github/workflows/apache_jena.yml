@@ -56,8 +56,8 @@ jobs:
     steps:
       - name: commit the result file
         run: |
-          git config --global user.name ${{ github.event.pusher.name }}
-          git config --global user.email ${{ github.event.pusher.email }}
+          git config user.name ${{ github.actor }}
+          git config user.email "jorge.aquino.jaq@gmail.com"
           git lfs track "public-dump.ttl"
           git add ${GITHUB_WORKSPACE}/public-dump.ttl
           git commit -am "Commit public-dump.ttl"
