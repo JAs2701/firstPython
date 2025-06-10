@@ -50,22 +50,24 @@ jobs:
           chmod +x ${GITHUB_WORKSPACE}/generate-public-dmp.sh
           sh ${GITHUB_WORKSPACE}/generate-public-dmp.sh
         
-  commit:
+  Commit:
     runs-on: ubuntu-latest
     needs: [clone_Repo, environement_Jena]
     steps:
-      - name: Commit in repository public
+      - name: Commit and push changes
         uses: actions/checkout@v4
         with:
           repository: JAs2701/test_dump
           token: ${{ github.token }}
-          #lfs: true
+          lfs: true
       
-      - run: |
+      - name: Commit and Push
+        shell: bash
+        run: |
           git config user.name ${{ github.actor }}
           git config user.email "jorge.aquino.jaq@gmail.com"
           git lfs track "public-dump.ttl"
-          git add generate-public-dmp.sh
+          git add public-dump.ttl
           git commit -am "Commit public-dump.ttl"
           git push
 
