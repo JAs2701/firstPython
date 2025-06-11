@@ -2,13 +2,7 @@ name: Clean Dump SAPA
 # This process is manuel execution
 on: [workflow_dispatch]
 jobs:
-  clone_Repo: 
-    runs-on: ubuntu-latest
-    steps:
-      - name: Clone Repository Target
-        run: git clone https://github.com/JAs2701/test_dump.git      
-    
-  environement_Jena:
+  dump_sapa:
     runs-on: ubuntu-latest
     steps:
       # Open file with format lfs
@@ -49,36 +43,14 @@ jobs:
         run: |
           chmod +x ${GITHUB_WORKSPACE}/generate-public-dmp.sh
           sh ${GITHUB_WORKSPACE}/generate-public-dmp.sh
-        
-  Commit:
-    runs-on: ubuntu-latest
-    needs: [clone_Repo, environement_Jena]
-    steps:
-      - name: Commit and push changes
-        uses: actions/checkout@v4
-        with:
-          repository: JAs2701/test_dump
-          token: ${{ github.token }}
-          lfs: true
-      
-      - name: Commit and Push
-        shell: bash
+
+      # Commit dump file clean
+      - name: Commit in Repository
         run: |
           git config user.name ${{ github.actor }}
           git config user.email "jorge.aquino.jaq@gmail.com"
           git lfs track "public-dump.ttl"
-          git add public-dump.ttl
+          git add ${GITHUB_WORKSPACE}/public-dump.ttl
           git commit -am "Commit public-dump.ttl"
           git push
-
       
-      
-      # Commit dump file clean
-      #- name: Commit in Repository
-      #  run: |
-      #     git config user.name ${{ github.actor }}
-      #     git config user.email "jorge.aquino.jaq@gmail.com"
-      #     git lfs track "public-dump.ttl"
-      #     git add ${GITHUB_WORKSPACE}/public-dump.ttl
-      #     git commit -am "Commit public-dump.ttl"
-      #     git push
