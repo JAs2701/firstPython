@@ -11,11 +11,7 @@ jobs:
         with:
           # Semantic version range syntax or exact version of a Python version
           python-version: '3.x'
-          cache: 'pip'
-      
       # install 
       - name: Install dependencies
-        run: pip install rdflib
-      # You can test your matrix by printing the current Python version
-      - name: Display Python version
-        run: python -c "import sys; print(sys.version)"
+      - run: python -m pip install --upgrade pip setuptools wheel
+      - run: python -m pip install rdflib
