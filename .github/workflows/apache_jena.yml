@@ -6,17 +6,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # Open file with format lfs
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           lfs: true
-
+      - run: echo "************* Configuration *************"
+      - run: echo "Install Java"
       - name: Install Java
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '21'
           check-latest: true
-      
+          
+      - run: echo "Install Apache Jena"
       - name: Download Apache Jena
         run: |
           download_url="https://dlcdn.apache.org/jena/binaries/apache-jena-5.4.0.zip"
